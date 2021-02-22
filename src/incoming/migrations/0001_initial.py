@@ -8,28 +8,63 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-        ('profiles', '0001_initial'),
-    ]
+    dependencies = [("profiles", "0001_initial")]
 
     operations = [
         migrations.CreateModel(
-            name='EventProposal',
+            name="EventProposal",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=256)),
-                ('detail', models.TextField()),
-                ('date', models.DateField()),
-                ('real_event', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, related_name='real_event', to='profiles.event')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=256)),
+                ("detail", models.TextField()),
+                ("date", models.DateField()),
+                (
+                    "real_event",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name="real_event",
+                        to="profiles.event",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='RelationProposal',
+            name="RelationProposal",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('date', models.DateField()),
-                ('event', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='incoming.eventproposal')),
-                ('person', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='profiles.person')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("date", models.DateField()),
+                (
+                    "event",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="incoming.eventproposal",
+                    ),
+                ),
+                (
+                    "person",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="profiles.person",
+                    ),
+                ),
             ],
         ),
     ]

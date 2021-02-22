@@ -7,9 +7,9 @@ class EventProposal(models.Model):
     real_event = models.ForeignKey(
         Event,
         on_delete=models.PROTECT,
-        related_name='real_event',
+        related_name="real_event",
         null=True,
-        blank=True
+        blank=True,
     )
     title = models.CharField(max_length=256)
     detail = models.TextField()

@@ -8,35 +8,79 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Event',
+            name="Event",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=256)),
-                ('detail', models.TextField()),
-                ('date', models.DateField()),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=256)),
+                ("detail", models.TextField()),
+                ("date", models.DateField()),
             ],
         ),
         migrations.CreateModel(
-            name='Person',
+            name="Person",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=32)),
-                ('last_name', models.CharField(max_length=32)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("first_name", models.CharField(max_length=32)),
+                ("last_name", models.CharField(max_length=32)),
             ],
         ),
         migrations.CreateModel(
-            name='EventRelation',
+            name="EventRelation",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('kind', models.CharField(choices=[('P', 'Positive'), ('N', 'Negative'), ('U', 'Neutral')], max_length=1)),
-                ('date', models.DateField()),
-                ('event', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='profiles.event')),
-                ('person', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='profiles.person')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "kind",
+                    models.CharField(
+                        choices=[
+                            ("P", "Positive"),
+                            ("N", "Negative"),
+                            ("U", "Neutral"),
+                        ],
+                        max_length=1,
+                    ),
+                ),
+                ("date", models.DateField()),
+                (
+                    "event",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT, to="profiles.event"
+                    ),
+                ),
+                (
+                    "person",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="profiles.person",
+                    ),
+                ),
             ],
         ),
     ]

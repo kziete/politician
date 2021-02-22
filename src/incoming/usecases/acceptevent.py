@@ -18,7 +18,7 @@ class AcceptEvent:
         new_event = Event(
             title=self.event_proposal.title,
             detail=self.event_proposal.detail,
-            date=self.event_proposal.date
+            date=self.event_proposal.date,
         )
         event = self.repository.create_event(new_event)
         self.event_proposal.event = event

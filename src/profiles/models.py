@@ -7,7 +7,7 @@ class Person(models.Model):
     last_name = models.CharField(max_length=32)
 
     def __str__(self):
-        return f'{self.last_name} {self.first_name}'
+        return f"{self.last_name} {self.first_name}"
 
 
 class Event(models.Model):
@@ -20,13 +20,13 @@ class Event(models.Model):
 
 
 class EventRelation(models.Model):
-    POSITIVE = 'P'
-    NEGATIVE = 'N'
-    NEUTRAL = 'U'
+    POSITIVE = "P"
+    NEGATIVE = "N"
+    NEUTRAL = "U"
     KIND_CHOICES = (
-        (POSITIVE, _('Positive')),
-        (NEGATIVE, _('Negative')),
-        (NEUTRAL, _('Neutral')),
+        (POSITIVE, _("Positive")),
+        (NEGATIVE, _("Negative")),
+        (NEUTRAL, _("Neutral")),
     )
     event = models.ForeignKey(Event, on_delete=models.PROTECT)
     person = models.ForeignKey(Person, on_delete=models.PROTECT)

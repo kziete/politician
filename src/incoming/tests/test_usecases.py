@@ -10,9 +10,7 @@ from profiles.models import Event
 @pytest.fixture
 def new_event_proposal() -> EventProposal:
     return EventProposal(
-        title='New Event',
-        detail='Detail',
-        date=datetime.datetime.now().date()
+        title="New Event", detail="Detail", date=datetime.datetime.now().date()
     )
 
 
@@ -27,8 +25,7 @@ class MockEventRepository:
 class TestAcceptEvent:
     def test_create(self, new_event_proposal):
         repo = MockEventRepository()
-        usecase = AcceptEvent(repo)\
-            .set_params(new_event_proposal)
+        usecase = AcceptEvent(repo).set_params(new_event_proposal)
 
         event = usecase.execute()
 
