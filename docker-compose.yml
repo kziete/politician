@@ -16,3 +16,13 @@ services:
       - "8000:8000"
     depends_on:
       - db
+  worker:
+    build: .
+    command: celery -A politician worker -l INFO
+    volumes:
+      - ./src:/code
+    depends_on:
+      - db
+      - rabbitmq
+  rabbitmq:
+    image: rabbitmq
