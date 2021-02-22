@@ -118,10 +118,10 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-CELERY_CACHE_BACKEND = 'django-cache'
-CELERY_BROKER_URL = 'pyamqp://rabbitmq'
+CELERY_CACHE_BACKEND = "django-cache"
+CELERY_BROKER_URL = "pyamqp://rabbitmq"
 
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'America/Santiago'
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TIMEZONE = "America/Santiago"
