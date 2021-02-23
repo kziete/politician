@@ -20,4 +20,4 @@ class Page:
 
     @cached_property
     def lower_detail(self) -> str:
-        return self.detai.lower()
+        return self.detail.lower()

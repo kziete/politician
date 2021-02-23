@@ -7,7 +7,7 @@ from crawlers import Crawler
 class CollectNews:
     def __init__(self, repository):
         self.crawlers: List[Crawler] = []
-        self.respository = repository
+        self.repository = repository
 
     def add_crawler(self, crawler: Crawler) -> CollectNews:
         self.crawlers.append(crawler)
@@ -16,11 +16,14 @@ class CollectNews:
     def execute(self) -> None:
         for crawler in self.crawlers:
             for page in crawler.execute():
-                print(page)
+                for person in self.repository.get_people():
+                    if person in page.lower_title or person in page.lower_detail:
+                        print(f"{person} encontrado en: {page.url}")
 
 
 class MockRepository:
-    pass
+    def get_people(self):
+        return ["sebastián piñera", "michelle bachelet"]
 
 
 if __name__ == "__main__":
