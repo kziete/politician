@@ -2,6 +2,10 @@ from profiles.models import Event
 from .models import EventProposal
 
 
+class CollectorRepository:
+    pass
+
+
 class EventRepository:
     def create_event(self, event: Event):
         print("create_event")
