@@ -40,6 +40,8 @@ if __name__ == "__main__":
     from crawlers.latercera import LaTerceraCrawler
 
     try:
-        CollectNews(MockRepository()).add_crawler(LaTerceraCrawler()).execute()
+        usecase = CollectNews(MockRepository())
+        usecase.add_crawler(LaTerceraCrawler())
+        usecase.execute()
     except KeyboardInterrupt:
         print("Collect cancelado")
