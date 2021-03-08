@@ -1,7 +1,8 @@
 from __future__ import annotations
 from typing import List, Iterator
 
-from crawlers import Crawler, Page
+from .crawlers import Crawler, Page
+from profiles.models import Person
 
 
 class CollectNews:
@@ -20,28 +21,18 @@ class CollectNews:
     def find_persons_in_page(self, page: Page) -> None:
         for person in self.repository.get_people():
             if self.is_person_in_page(person, page):
-                print(f"{person} encontrado en: {page.url}")
+                self.create_proposal(person, page)
 
-    def is_person_in_page(self, person: str, page: Page) -> bool:
-        return person in page.lower_title or person in page.lower_detail
+    def create_proposal(self, person: Person, page: Page):
+        event_proposal = self.repository.get_or_create_event_proposal(page)
+
+    def is_person_in_page(self, person: Person, page: Page) -> bool:
+        return (
+            person.lower_name in page.lower_title
+            or person.lower_name in page.lower_detail
+        )
 
     @property
     def pages(self) -> Iterator:
         for crawler in self.crawlers:
             yield from crawler.execute()
-
-
-class MockRepository:
-    def get_people(self):
-        return ["sebastián piñera", "michelle bachelet"]
-
-
-if __name__ == "__main__":
-    from crawlers.latercera import LaTerceraCrawler
-
-    try:
-        usecase = CollectNews(MockRepository())
-        usecase.add_crawler(LaTerceraCrawler())
-        usecase.execute()
-    except KeyboardInterrupt:
-        print("Collect cancelado")

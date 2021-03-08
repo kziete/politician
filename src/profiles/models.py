@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.functional import cached_property
 from django.utils.translation import gettext as _
 
 
@@ -8,6 +9,10 @@ class Person(models.Model):
 
     def __str__(self):
         return f"{self.last_name} {self.first_name}"
+
+    @cached_property
+    def lower_name(self) -> str:
+        return f"{self.first_name} {self.last_name}".lower()
 
 
 class Event(models.Model):
